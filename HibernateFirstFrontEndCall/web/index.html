@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>product Add from Ajax for hibernate First Project</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div>Category Ajax Call</div>
+        <form id="category-form">
+            <div> 
+                <label>Name</label>
+                <input type="text" name="name"/>
+            </div>
+            <div> 
+                <label>Description</label>
+                <textarea name="description"></textarea>
+            </div>
+            <div> 
+                <label>Status</label>
+                <input type="checkbox" name="status"/>
+
+            </div>
+            <button type="submit" id="save-btn">Send</button>
+        </form>
+        <div id="view"></div>
+        <script>
+            $(document).on('ready', function () {
+                $("#save-btn").on('click', function () {
+                    var url = "http://localhost:8080/HibernateFirst/admin/category/save";
+                    $.post(url, $("#category-form").serialize(), function (res) {
+                        console.log(res);
+
+                    });
+                    return false;
+
+                });
+                $.get("http://localhost:8080/HibernateFirst/admin/category",function (res){
+                    $("#view").html(res);
+                    
+                });
+
+            });
+        </script>
+
+
+    </body>
+</html>
